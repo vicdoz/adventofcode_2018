@@ -11,18 +11,15 @@ class Puzzle:
 
     def run(self) -> int:
         for movement in itertools.cycle(self.movements):
-            current = self.current + int(movement)
-            self.current = current
-            if current in self.results:
+            self.current += int(movement)
+            if self.current in self.results:
                 break
-            else:
-                self.results.add(current)
         return self.current
 
     def parse_string_input(self, input_string: str) -> None:
         self.movements = input_string.split(',')
 
-    def parse_file_input(self, file: str):
+    def parse_file_input(self, file: str) -> None:
         with open(file) as f:
             lines = f.read().splitlines()
         self.movements = lines
